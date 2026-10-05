@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Golden Crumb Bakery</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <header class="navbar">
+    <a href="#home" class="brand">Golden Crumb</a>
+
+    <!-- Hidden checkbox controls the mobile menu -->
+    <input type="checkbox" id="menu-toggle">
+    <label for="menu-toggle" class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
+
+    <nav class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#treats">Treats</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="home">
+    <div class="hero-text">
+      <h1>Freshly Baked, Every Single Morning</h1>
+      <p>Warm bread, flaky pastries and cakes made by hand with real butter and local flour. Come in for a treat, stay for the smell.</p>
+      <a href="#treats" class="btn">See Our Treats</a>
+    </div>
+    <div class="hero-image">
+      <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=900&q=80" alt="Fresh loaves of bread">
+    </div>
+  </section>
+
+  <!-- ===== CARDS ===== -->
+  <section class="treats" id="treats">
+    <h2>Our Favourite Treats</h2>
+    <p class="section-subtitle">Baked fresh daily. When they're gone, they're gone!</p>
+
+    <div class="cards">
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=600&q=80" alt="Butter croissants">
+        <h3>Butter Croissant</h3>
+        <p>Crisp, golden and flaky.</p>
+        <p class="price">₹120</p>
+        <a href="#contact" class="btn">Order Now</a>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1517433670267-08bbd4be890f?auto=format&fit=crop&w=600&q=80" alt="Sourdough bread">
+        <h3>Sourdough Loaf</h3>
+        <p>Slow-fermented for 24 hours.</p>
+        <p class="price">₹250</p>
+        <a href="#contact" class="btn">Order Now</a>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=600&q=80" alt="Chocolate cake">
+        <h3>Chocolate Cake</h3>
+        <p>Rich, moist and very chocolatey.</p>
+        <p class="price">₹650</p>
+        <a href="#contact" class="btn">Order Now</a>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=600&q=80" alt="Frosted cupcakes">
+        <h3>Cupcake Box</h3>
+        <p>Six cupcakes in mixed flavours.</p>
+        <p class="price">₹480</p>
+        <a href="#contact" class="btn">Order Now</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== ABOUT / CTA BANNER ===== -->
+  <section class="banner" id="about">
+    <h2>Baked With Love Since 2012</h2>
+    <p>We're a small family bakery that believes good food takes time. No shortcuts, no artificial flavours, just simple ingredients and a lot of care. Planning a birthday or wedding? We make custom cakes too.</p>
+    <a href="#contact" class="btn btn-light">Order a Custom Cake</a>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer" id="contact">
+    <div class="footer-box">
+      <h3>Contact Us</h3>
+      <p><i class="fa-solid fa-phone"></i> +91 98765 43210</p>
+      <p><i class="fa-solid fa-envelope"></i> hello@goldencrumb.com</p>
+      <div class="social-icons">
+        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="#"><i class="fa-brands fa-youtube"></i></a>
+      </div>
+    </div>
+
+    <div class="footer-box">
+      <h3>Get Sweet Updates</h3>
+      <p>Subscribe for new recipes and special offers.</p>
+      <form class="subscribe" action="#">
+        <input type="email" placeholder="Your email address">
+        <button type="submit" class="btn">Subscribe</button>
+      </form>
+    </div>
+
+    <p class="copyright">&copy; 2026 Golden Crumb Bakery. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
