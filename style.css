@@ -1,10 +1,14 @@
-/* ===== BASIC RESET & VARIABLES ===== */
+/* =========================================
+   BASIC RESET & COLOURS
+   Change the colours here to retheme the site
+   ========================================= */
 :root {
-  --brown: #5a3825;
-  --caramel: #d98e3f;
-  --cream: #fff7ec;
+  --pink: #d6336c;       /* main colour */
+  --pink-light: #ffe3ec; /* soft background pink */
+  --mint: #7ed6c1;       /* accent colour */
+  --dark: #2d2a32;       /* dark text / footer */
+  --bg: #fff8f5;         /* page background */
   --white: #ffffff;
-  --text: #4a3a30;
 }
 
 * {
@@ -18,11 +22,16 @@ html {
 }
 
 body {
-  font-family: Georgia, "Times New Roman", serif;
-  background-color: var(--cream);
-  color: var(--text);
-  line-height: 1.6;
-  padding-top: 70px; /* space for the fixed navbar */
+  font-family: "Poppins", Arial, sans-serif;
+  background-color: var(--bg);
+  color: var(--dark);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+h1, h2, h3 {
+  font-family: "Playfair Display", Georgia, serif;
+  line-height: 1.2;
 }
 
 img {
@@ -34,285 +43,519 @@ a {
   text-decoration: none;
 }
 
-/* ===== BUTTON ===== */
+/* =========================================
+   ANIMATIONS (keyframes)
+   ========================================= */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-15px); }
+}
+
+@keyframes morph {
+  0%, 100% { border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%; }
+  50%      { border-radius: 40% 60% 45% 55% / 60% 40% 60% 40%; }
+}
+
+@keyframes scroll-left {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes gradient-move {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* =========================================
+   BUTTONS
+   ========================================= */
 .btn {
+  position: relative;
+  overflow: hidden;
   display: inline-block;
-  background-color: var(--caramel);
+  background-color: var(--pink);
   color: var(--white);
-  padding: 12px 28px;
+  padding: 14px 32px;
   border: none;
-  border-radius: 30px;
+  border-radius: 50px;
+  font-family: "Poppins", Arial, sans-serif;
   font-size: 16px;
-  font-family: Arial, sans-serif;
+  font-weight: 500;
   cursor: pointer;
-  transition: background-color 0.3s, transform 0.3s;
+  box-shadow: 0 8px 20px rgba(214, 51, 108, 0.35);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* shiny light that sweeps across the button on hover */
+.btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.35);
+  transform: skewX(-25deg);
+  transition: left 0.6s;
 }
 
 .btn:hover {
-  background-color: var(--brown);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 25px rgba(214, 51, 108, 0.45);
+}
+
+.btn:hover::after {
+  left: 140%;
+}
+
+.btn-small {
+  padding: 10px 24px;
+  font-size: 14px;
 }
 
 .btn-light {
   background-color: var(--white);
-  color: var(--brown);
+  color: var(--pink);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
-.btn-light:hover {
-  background-color: var(--caramel);
-  color: var(--white);
-}
-
-/* ===== NAVBAR ===== */
+/* =========================================
+   NAVBAR - floating pill
+   ========================================= */
 .navbar {
   position: fixed;
-  top: 0;
+  top: 15px;
   left: 0;
-  width: 100%;
-  height: 70px;
-  background-color: var(--white);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  right: 0;
+  margin: 0 auto;
+  width: 92%;
+  max-width: 1100px;
+  height: 66px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 40px;
+  padding: 0 30px;
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  border-radius: 50px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
   z-index: 100;
 }
 
 .brand {
-  font-size: 26px;
-  font-weight: bold;
-  color: var(--brown);
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--pink);
 }
 
 .nav-links {
   display: flex;
-  gap: 30px;
+  gap: 32px;
 }
 
 .nav-links a {
-  color: var(--text);
-  font-family: Arial, sans-serif;
-  font-size: 16px;
-  transition: color 0.3s;
+  position: relative;
+  color: var(--dark);
+  font-weight: 500;
+  padding: 4px 0;
 }
 
-.nav-links a:hover {
-  color: var(--caramel);
+/* underline that grows from the left on hover */
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--pink);
+  transition: width 0.3s;
 }
 
-/* Hide the checkbox and hamburger on desktop */
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* checkbox and hamburger are hidden on desktop */
 #menu-toggle,
 .hamburger {
   display: none;
 }
 
-/* ===== HERO ===== */
+/* =========================================
+   HERO
+   ========================================= */
 .hero {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 40px;
-  padding: 60px 40px;
+  gap: 50px;
   max-width: 1200px;
   margin: 0 auto;
+  padding: 150px 40px 70px;
 }
 
 .hero-text {
   flex: 1;
 }
 
-.hero-text h1 {
-  font-size: 52px;
-  line-height: 1.2;
-  color: var(--brown);
+/* each item in the hero text fades up, one after another */
+.hero-text > * {
+  animation: fadeUp 0.8s ease backwards;
+}
+.hero-text > :nth-child(1) { animation-delay: 0.1s; }
+.hero-text > :nth-child(2) { animation-delay: 0.25s; }
+.hero-text > :nth-child(3) { animation-delay: 0.4s; }
+.hero-text > :nth-child(4) { animation-delay: 0.55s; }
+.hero-text > :nth-child(5) { animation-delay: 0.7s; }
+
+.badge {
+  display: inline-block;
+  background-color: var(--pink-light);
+  color: var(--pink);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 6px 16px;
+  border-radius: 50px;
   margin-bottom: 20px;
+}
+
+.hero-text h1 {
+  font-size: 58px;
+  margin-bottom: 20px;
+}
+
+/* highlighted word with a mint marker line under it */
+.highlight {
+  color: var(--pink);
+  background: linear-gradient(transparent 65%, var(--mint) 65%);
 }
 
 .hero-text p {
   font-size: 18px;
+  max-width: 480px;
   margin-bottom: 30px;
+}
+
+.stats {
+  display: flex;
+  gap: 35px;
+  margin-top: 40px;
+}
+
+.stats div {
+  display: flex;
+  flex-direction: column;
+}
+
+.stats strong {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 28px;
+  color: var(--pink);
+}
+
+.stats span {
+  font-size: 14px;
 }
 
 .hero-image {
   flex: 1;
+  position: relative;
+  animation: float 5s ease-in-out infinite;
 }
 
+/* the picture is cut into a wobbling blob shape */
 .hero-image img {
   width: 100%;
-  border-radius: 20px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  height: 460px;
+  object-fit: cover;
+  border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%;
+  border: 8px solid var(--white);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  animation: morph 8s ease-in-out infinite;
 }
 
-/* ===== CARDS SECTION ===== */
+.floating-badge {
+  position: absolute;
+  bottom: 40px;
+  left: -20px;
+  background-color: var(--white);
+  color: var(--pink);
+  font-weight: 600;
+  padding: 12px 22px;
+  border-radius: 50px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  animation: float 3s ease-in-out infinite;
+}
+
+/* =========================================
+   SCROLLING STRIP
+   ========================================= */
+.marquee {
+  background-color: var(--pink);
+  color: var(--white);
+  overflow: hidden;
+  padding: 16px 0;
+  transform: rotate(-1.5deg);
+  margin: 20px -20px 30px;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: scroll-left 20s linear infinite;
+}
+
+.marquee-track span {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 24px;
+  font-weight: 700;
+  padding: 0 25px;
+  white-space: nowrap;
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* =========================================
+   CARDS SECTION
+   ========================================= */
 .treats {
-  padding: 60px 40px;
+  padding: 70px 40px;
   text-align: center;
 }
 
-.treats h2 {
-  font-size: 36px;
-  color: var(--brown);
+.small-title {
+  color: var(--pink);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 14px;
 }
 
-.section-subtitle {
-  margin-bottom: 40px;
+.treats h2 {
+  font-size: 42px;
+  margin-bottom: 45px;
 }
 
 .cards {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 25px;
+  gap: 30px;
   max-width: 1200px;
   margin: 0 auto;
 }
 
 .card {
-  background-color: var(--white);
   width: 260px;
-  padding: 15px 15px 25px;
-  border-radius: 15px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
+  background-color: var(--white);
+  border-radius: 25px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  transition: transform 0.4s, box-shadow 0.4s;
 }
 
 .card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  transform: translateY(-12px) rotate(-1deg);
+  box-shadow: 0 18px 35px rgba(214, 51, 108, 0.25);
 }
 
-.card img {
+.card-img {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-img img {
   width: 100%;
-  height: 180px;
+  height: 200px;
   object-fit: cover;
-  border-radius: 10px;
-  margin-bottom: 15px;
+  transition: transform 0.6s;
 }
 
-.card h3 {
-  color: var(--brown);
+/* picture zooms in slowly on hover */
+.card:hover .card-img img {
+  transform: scale(1.12);
+}
+
+.tag {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background-color: var(--mint);
+  color: var(--dark);
+  font-weight: 600;
+  padding: 4px 14px;
+  border-radius: 50px;
+}
+
+.card-body {
+  padding: 20px 20px 25px;
+}
+
+.card-body h3 {
+  font-size: 22px;
   margin-bottom: 5px;
 }
 
-.price {
-  color: var(--caramel);
-  font-weight: bold;
-  font-size: 20px;
-  margin: 10px 0 15px;
+.card-body p {
+  margin-bottom: 15px;
+  font-size: 15px;
 }
 
-/* ===== ABOUT / CTA BANNER ===== */
+/* =========================================
+   ABOUT / CTA BANNER
+   ========================================= */
 .banner {
-  background: linear-gradient(135deg, var(--brown), var(--caramel));
-  color: var(--white);
-  text-align: center;
   max-width: 1120px;
-  margin: 40px auto 60px;
-  padding: 70px 40px;
-  border-radius: 25px;
+  margin: 30px auto 80px;
+  padding: 80px 40px;
+  text-align: center;
+  color: var(--white);
+  border-radius: 40px;
+  /* moving gradient background */
+  background: linear-gradient(120deg, #2d2a32, #d6336c, #2d2a32);
+  background-size: 200% 200%;
+  animation: gradient-move 10s ease infinite;
 }
 
 .banner h2 {
-  font-size: 38px;
+  font-size: 42px;
   margin-bottom: 15px;
 }
 
 .banner p {
   max-width: 650px;
   margin: 0 auto 30px;
-  font-size: 18px;
+  font-size: 17px;
 }
 
-/* ===== FOOTER ===== */
+/* =========================================
+   FOOTER
+   ========================================= */
 .footer {
-  background-color: var(--brown);
+  background-color: var(--dark);
   color: var(--white);
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  gap: 30px;
-  padding: 50px 40px 20px;
+  gap: 35px;
+  padding: 60px 40px 25px;
+  border-radius: 40px 40px 0 0;
 }
 
 .footer-box {
-  min-width: 250px;
+  min-width: 260px;
 }
 
 .footer-box h3 {
+  color: var(--mint);
+  font-size: 24px;
   margin-bottom: 15px;
-  color: var(--caramel);
 }
 
 .footer-box p {
   margin-bottom: 8px;
 }
 
-.footer-box i {
+.footer-box p i {
+  color: var(--mint);
   margin-right: 8px;
-  color: var(--caramel);
 }
 
 .social-icons {
   display: flex;
   gap: 12px;
-  margin-top: 15px;
+  margin-top: 18px;
 }
 
 .social-icons a {
+  width: 42px;
+  height: 42px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
-  background-color: var(--white);
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--white);
   border-radius: 50%;
-  transition: background-color 0.3s;
-}
-
-.social-icons a i {
-  margin: 0;
-  color: var(--brown);
+  transition: background-color 0.3s, transform 0.3s;
 }
 
 .social-icons a:hover {
-  background-color: var(--caramel);
+  background-color: var(--pink);
+  transform: translateY(-5px) rotate(360deg);
 }
 
+/* input and button joined inside one rounded box */
 .subscribe {
   display: flex;
-  gap: 10px;
+  background-color: var(--white);
+  border-radius: 50px;
+  padding: 5px;
   margin-top: 15px;
 }
 
 .subscribe input {
-  padding: 12px 15px;
+  flex: 1;
+  min-width: 0;
   border: none;
-  border-radius: 30px;
-  font-size: 15px;
-  width: 100%;
+  outline: none;
+  background: none;
+  padding: 0 15px;
+  font-family: "Poppins", Arial, sans-serif;
+  font-size: 14px;
 }
 
 .copyright {
   width: 100%;
   text-align: center;
   font-size: 14px;
-  padding-top: 20px;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  padding-top: 22px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
 }
 
-/* ===== MOBILE (768px and below) ===== */
+/* =========================================
+   SCROLL ANIMATION (CSS only)
+   Cards and banner slide in as you scroll down.
+   Browsers that don't support it simply show them normally.
+   ========================================= */
+@keyframes reveal {
+  from { opacity: 0; transform: translateY(60px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@supports (animation-timeline: view()) {
+  .card,
+  .banner,
+  .treats h2 {
+    animation: reveal linear backwards;
+    animation-timeline: view();
+    animation-range: entry 0% entry 60%;
+  }
+}
+
+/* =========================================
+   MOBILE (768px and below)
+   ========================================= */
 @media (max-width: 768px) {
 
   .navbar {
-    padding: 0 20px;
+    padding: 0 22px;
   }
 
   .brand {
-    font-size: 22px;
+    font-size: 20px;
   }
 
-  /* Show hamburger icon */
+  /* show hamburger */
   .hamburger {
     display: flex;
     flex-direction: column;
@@ -323,53 +566,95 @@ a {
   .hamburger span {
     width: 26px;
     height: 3px;
-    background-color: var(--brown);
+    background-color: var(--pink);
     border-radius: 3px;
+    transition: transform 0.3s, opacity 0.3s;
   }
 
-  /* Hide links until the checkbox is checked */
+  /* hamburger turns into an X when checked */
+  #menu-toggle:checked + .hamburger span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  #menu-toggle:checked + .hamburger span:nth-child(2) {
+    opacity: 0;
+  }
+  #menu-toggle:checked + .hamburger span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  /* dropdown menu: hidden by default, fades in when checked */
   .nav-links {
-    display: none;
     position: absolute;
-    top: 70px;
+    top: 78px;
     left: 0;
-    width: 100%;
-    background-color: var(--white);
+    right: 0;
     flex-direction: column;
     gap: 0;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    background-color: var(--white);
+    border-radius: 25px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    padding: 10px 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-15px);
+    transition: opacity 0.3s, transform 0.3s, visibility 0.3s;
   }
 
   .nav-links a {
-    padding: 15px 20px;
-    border-top: 1px solid #eee;
+    padding: 12px 25px;
   }
 
   #menu-toggle:checked ~ .nav-links {
-    display: flex;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
   }
 
-  /* Hero becomes one column */
+  /* hero: one column */
   .hero {
     flex-direction: column;
     text-align: center;
-    padding: 40px 20px;
+    padding: 120px 20px 50px;
+    gap: 40px;
   }
 
   .hero-text h1 {
-    font-size: 34px;
+    font-size: 36px;
   }
 
   .hero-text p {
     font-size: 16px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .stats {
+    justify-content: center;
+  }
+
+  .hero-image {
+    width: 100%;
+  }
+
+  .hero-image img {
+    height: 300px;
+  }
+
+  .floating-badge {
+    left: 10px;
+    bottom: 20px;
+  }
+
+  .marquee span {
+    font-size: 18px;
   }
 
   .treats {
-    padding: 40px 20px;
+    padding: 50px 20px;
   }
 
   .treats h2 {
-    font-size: 28px;
+    font-size: 30px;
   }
 
   .card {
@@ -378,24 +663,32 @@ a {
   }
 
   .banner {
-    margin: 30px 20px 40px;
-    padding: 45px 20px;
+    margin: 20px 20px 50px;
+    padding: 50px 22px;
+    border-radius: 30px;
   }
 
   .banner h2 {
-    font-size: 28px;
+    font-size: 30px;
   }
 
   .banner p {
-    font-size: 16px;
+    font-size: 15px;
   }
 
   .footer {
     flex-direction: column;
-    padding: 40px 20px 20px;
+    padding: 45px 22px 20px;
+    border-radius: 30px 30px 0 0;
   }
+}
 
-  .subscribe {
-    flex-direction: column;
+/* =========================================
+   Respect people who prefer less motion
+   ========================================= */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
   }
 }

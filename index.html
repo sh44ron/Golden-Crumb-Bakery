@@ -4,16 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Golden Crumb Bakery</title>
+
+  <!-- Google Fonts: Playfair Display (headings) + Poppins (text) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- ===== NAVBAR ===== -->
+  <!-- ===== NAVBAR (floating pill) ===== -->
   <header class="navbar">
-    <a href="#home" class="brand">Golden Crumb</a>
+    <a href="#home" class="brand"><i class="fa-solid fa-cookie-bite"></i> Golden Crumb</a>
 
-    <!-- Hidden checkbox controls the mobile menu -->
+    <!-- Hidden checkbox + label = CSS-only hamburger. Keep this order! -->
     <input type="checkbox" id="menu-toggle">
     <label for="menu-toggle" class="hamburger">
       <span></span>
@@ -32,52 +40,96 @@
   <!-- ===== HERO ===== -->
   <section class="hero" id="home">
     <div class="hero-text">
-      <h1>Freshly Baked, Every Single Morning</h1>
-      <p>Warm bread, flaky pastries and cakes made by hand with real butter and local flour. Come in for a treat, stay for the smell.</p>
-      <a href="#treats" class="btn">See Our Treats</a>
+      <span class="badge">🥐 Fresh out of the oven</span>
+      <h1>Sweet Moments, <span class="highlight">Baked</span> Fresh Daily</h1>
+      <p>Handmade breads, buttery pastries and dreamy cakes. Made with real ingredients and a little bit of magic, just for you.</p>
+      <a href="#treats" class="btn">Explore Treats</a>
+
+      <div class="stats">
+        <div><strong>12+</strong><span>Years</span></div>
+        <div><strong>40+</strong><span>Recipes</span></div>
+        <div><strong>4.9★</strong><span>Rating</span></div>
+      </div>
     </div>
+
     <div class="hero-image">
       <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=900&q=80" alt="Fresh loaves of bread">
+      <div class="floating-badge">
+        <i class="fa-solid fa-fire"></i> Baked today
+      </div>
     </div>
   </section>
 
+  <!-- ===== SCROLLING STRIP ===== -->
+  <div class="marquee">
+    <div class="marquee-track">
+      <span>Croissants ✦</span>
+      <span>Sourdough ✦</span>
+      <span>Cakes ✦</span>
+      <span>Cupcakes ✦</span>
+      <span>Fresh Every Morning ✦</span>
+      <!-- Same words again so the loop looks seamless -->
+      <span>Croissants ✦</span>
+      <span>Sourdough ✦</span>
+      <span>Cakes ✦</span>
+      <span>Cupcakes ✦</span>
+      <span>Fresh Every Morning ✦</span>
+    </div>
+  </div>
+
   <!-- ===== CARDS ===== -->
   <section class="treats" id="treats">
+    <p class="small-title">What we bake</p>
     <h2>Our Favourite Treats</h2>
-    <p class="section-subtitle">Baked fresh daily. When they're gone, they're gone!</p>
 
     <div class="cards">
 
       <div class="card">
-        <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=600&q=80" alt="Butter croissants">
-        <h3>Butter Croissant</h3>
-        <p>Crisp, golden and flaky.</p>
-        <p class="price">₹120</p>
-        <a href="#contact" class="btn">Order Now</a>
+        <div class="card-img">
+          <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=600&q=80" alt="Butter croissants">
+          <span class="tag">₹120</span>
+        </div>
+        <div class="card-body">
+          <h3>Butter Croissant</h3>
+          <p>Crisp, golden and flaky.</p>
+          <a href="#contact" class="btn btn-small">Order Now</a>
+        </div>
       </div>
 
       <div class="card">
-        <img src="https://images.unsplash.com/photo-1517433670267-08bbd4be890f?auto=format&fit=crop&w=600&q=80" alt="Sourdough bread">
-        <h3>Sourdough Loaf</h3>
-        <p>Slow-fermented for 24 hours.</p>
-        <p class="price">₹250</p>
-        <a href="#contact" class="btn">Order Now</a>
+        <div class="card-img">
+          <img src="https://images.unsplash.com/photo-1517433670267-08bbd4be890f?auto=format&fit=crop&w=600&q=80" alt="Sourdough bread">
+          <span class="tag">₹250</span>
+        </div>
+        <div class="card-body">
+          <h3>Sourdough Loaf</h3>
+          <p>Slow-fermented for 24 hours.</p>
+          <a href="#contact" class="btn btn-small">Order Now</a>
+        </div>
       </div>
 
       <div class="card">
-        <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=600&q=80" alt="Chocolate cake">
-        <h3>Chocolate Cake</h3>
-        <p>Rich, moist and very chocolatey.</p>
-        <p class="price">₹650</p>
-        <a href="#contact" class="btn">Order Now</a>
+        <div class="card-img">
+          <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=600&q=80" alt="Chocolate cake">
+          <span class="tag">₹650</span>
+        </div>
+        <div class="card-body">
+          <h3>Chocolate Cake</h3>
+          <p>Rich, moist and very chocolatey.</p>
+          <a href="#contact" class="btn btn-small">Order Now</a>
+        </div>
       </div>
 
       <div class="card">
-        <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=600&q=80" alt="Frosted cupcakes">
-        <h3>Cupcake Box</h3>
-        <p>Six cupcakes in mixed flavours.</p>
-        <p class="price">₹480</p>
-        <a href="#contact" class="btn">Order Now</a>
+        <div class="card-img">
+          <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=600&q=80" alt="Frosted cupcakes">
+          <span class="tag">₹480</span>
+        </div>
+        <div class="card-body">
+          <h3>Cupcake Box</h3>
+          <p>Six cupcakes in mixed flavours.</p>
+          <a href="#contact" class="btn btn-small">Order Now</a>
+        </div>
       </div>
 
     </div>
@@ -86,7 +138,7 @@
   <!-- ===== ABOUT / CTA BANNER ===== -->
   <section class="banner" id="about">
     <h2>Baked With Love Since 2012</h2>
-    <p>We're a small family bakery that believes good food takes time. No shortcuts, no artificial flavours, just simple ingredients and a lot of care. Planning a birthday or wedding? We make custom cakes too.</p>
+    <p>We're a small family bakery that believes good food takes time. No shortcuts, no artificial flavours, just simple ingredients and a lot of care. Planning a birthday or a wedding? We make custom cakes too.</p>
     <a href="#contact" class="btn btn-light">Order a Custom Cake</a>
   </section>
 
@@ -106,10 +158,10 @@
 
     <div class="footer-box">
       <h3>Get Sweet Updates</h3>
-      <p>Subscribe for new recipes and special offers.</p>
+      <p>New recipes and special offers, straight to your inbox.</p>
       <form class="subscribe" action="#">
         <input type="email" placeholder="Your email address">
-        <button type="submit" class="btn">Subscribe</button>
+        <button type="submit" class="btn btn-small">Subscribe</button>
       </form>
     </div>
 
